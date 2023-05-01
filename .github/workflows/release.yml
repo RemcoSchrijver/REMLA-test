@@ -9,6 +9,7 @@ jobs:
         run: echo "${{ secrets.GH_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
       - name: Build and Push Docker Image
         run: |
-          IMG=${a,,ghcr.io/${{ github.repository.lowercase }}}
+          UNFORMATTED_IMG=ghcr.io/${{ github.repository }}
+          echo "IMG=${UNFORMATTED_IMG,,}" >>${GITHUB_ENV}
           docker build --tag $IMG:latest .
           docker push --all-tags $IMG
