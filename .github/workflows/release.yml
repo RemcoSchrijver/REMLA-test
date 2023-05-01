@@ -15,6 +15,6 @@ jobs:
           echo "The value of REPO is: ${REPO}"
       - name: Build and Push Docker Image
         run: |
-          echo ghcr.io/${REPO}
-          docker build --tag ghcr.io/${REPO}:latest .
+          IMG=ghcr.io/${REPO}
+          docker build --tag $IMG:latest .
           docker push --all-tags $IMG
