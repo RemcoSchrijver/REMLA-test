@@ -11,7 +11,7 @@ jobs:
         run: |
           UNFORMATTED_IMG=ghcr.io/${{ github.repository }}
           echo ${UNFORMATTED_IMG,,}
-          echo "IMG=${UNFORMATTED_IMG,,}" >>${GITHUB_ENV}
-          echo $IMG
-          docker build --tag $IMG:latest .
+          echo "IMG=${${UNFORMATTED_IMG},,}" >>${GITHUB_ENV}
+          echo ${IMG}
+          docker build --tag ${IMG}:latest .
           docker push --all-tags $IMG
